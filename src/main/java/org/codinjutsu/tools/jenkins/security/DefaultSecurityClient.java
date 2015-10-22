@@ -46,10 +46,10 @@ class DefaultSecurityClient implements SecurityClient {
     private static final int DEFAULT_SOCKET_TIMEOUT = 10000;
     private static final int DEFAULT_CONNECTION_TIMEOUT = 10000;
 
-    protected String crumbData;
+    protected final String crumbData;
 
     protected final HttpClient httpClient;
-    protected Map<String, VirtualFile> files = new HashMap<String, VirtualFile>();
+    private Map<String, VirtualFile> files = new HashMap<String, VirtualFile>();
 
     DefaultSecurityClient(String crumbData) {
         this.httpClient = new HttpClient(new MultiThreadedHttpConnectionManager());
@@ -118,7 +118,7 @@ class DefaultSecurityClient implements SecurityClient {
 
             int statusCode = httpClient.executeMethod(post);
             final String responseBody;
-            try(InputStream inputStream = post.getResponseBodyAsStream();) {
+            try(InputStream inputStream = post.getResponseBodyAsStream()) {
                 responseBody = IOUtils.toString(inputStream, post.getResponseCharSet());
             }
             checkResponse(statusCode, responseBody);

@@ -29,7 +29,7 @@ import java.io.InputStream;
  */
 public class VirtualFilePartSource implements PartSource {
 
-    private VirtualFile file;
+    private final VirtualFile file;
 
     public VirtualFilePartSource(VirtualFile file) {
         this.file = file;

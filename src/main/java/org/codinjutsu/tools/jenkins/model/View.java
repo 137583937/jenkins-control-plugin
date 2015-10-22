@@ -21,7 +21,7 @@ import java.util.List;
 
 public class View {
 
-    public static String FAVORITE = "My Favorites";
+    static final String FAVORITE = "My Favorites";
 
     private String name;
     //TODO URL shoud be changed to object representing URL

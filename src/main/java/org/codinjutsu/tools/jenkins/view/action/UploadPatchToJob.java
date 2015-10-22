@@ -48,7 +48,7 @@ public class UploadPatchToJob extends AnAction implements DumbAware {
     public static final String SUFFIX_JOB_NAME_MACROS = "$JobName$";
 
     private static final Logger LOG = Logger.getInstance(UploadPatchToJob.class.getName());
-    private BrowserPanel browserPanel;
+    private final BrowserPanel browserPanel;
 
     private static final Icon EXECUTE_ICON = GuiUtil.isUnderDarcula() ? GuiUtil.loadIcon("execute_dark.png") : GuiUtil.loadIcon("execute.png");
 
@@ -101,7 +101,7 @@ public class UploadPatchToJob extends AnAction implements DumbAware {
             }
 
         } catch (Exception e) {
-            message = String.format("Build cannot be run: " + e.getMessage());
+            message = "Build cannot be run: " + e.getMessage();
             e.printStackTrace();
         }
 
@@ -117,7 +117,7 @@ public class UploadPatchToJob extends AnAction implements DumbAware {
             InputStream stream = file.getInputStream();
             InputStreamReader streamReader = new InputStreamReader(stream);
             BufferedReader bufferReader = new BufferedReader(streamReader);
-            String line = null;
+            String line;
             String suffix = settings.getSuffix();
             suffix = suffix.replace(SUFFIX_JOB_NAME_MACROS, job.getName());
             StringBuilder builder = new StringBuilder();

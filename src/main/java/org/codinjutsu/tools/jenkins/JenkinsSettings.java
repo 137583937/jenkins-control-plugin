@@ -45,9 +45,9 @@ public class JenkinsSettings implements PersistentStateComponent<JenkinsSettings
 
     private static final Logger LOG = Logger.getInstance(JenkinsSettings.class.getName());
 
-    public static final String JENKINS_SETTINGS_PASSWORD_KEY = "JENKINS_SETTINGS_PASSWORD_KEY";
+    private static final String JENKINS_SETTINGS_PASSWORD_KEY = "JENKINS_SETTINGS_PASSWORD_KEY";
 
-    private State myState = new State();
+    private final State myState = new State();
 
     public static JenkinsSettings getSafeInstance(Project project) {
         JenkinsSettings settings = ServiceManager.getService(project, JenkinsSettings.class);
@@ -162,7 +162,7 @@ public class JenkinsSettings implements PersistentStateComponent<JenkinsSettings
 
         public String lastSelectedView;
 
-        public List<FavoriteJob> favoriteJobs = new LinkedList<FavoriteJob>();
+        public final List<FavoriteJob> favoriteJobs = new LinkedList<FavoriteJob>();
 
     }
 

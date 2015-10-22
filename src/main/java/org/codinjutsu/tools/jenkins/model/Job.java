@@ -158,7 +158,7 @@ public class Job {
         this.lastBuild = lastBuild;
     }
 
-    Health getHealth() {
+    private Health getHealth() {
         return health;
     }
 

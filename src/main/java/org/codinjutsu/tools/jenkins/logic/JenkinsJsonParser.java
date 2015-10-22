@@ -24,6 +24,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -73,12 +75,12 @@ public class JenkinsJsonParser implements JenkinsParser {
         view.setNested(false);
         String name = (String) viewObject.get(VIEW_NAME);
         if (name != null) {
-            view.setName(name.toString());
+            view.setName(name);
         }
 
         String url = (String) viewObject.get(VIEW_URL);
         if (name != null) {
-            view.setUrl(url.toString());
+            view.setUrl(url);
         }
 
         JSONArray subViewObjs = (JSONArray) viewObject.get(VIEWS);
@@ -311,19 +313,20 @@ public class JenkinsJsonParser implements JenkinsParser {
         JSONParser parser = new JSONParser();
 
         try {
-            List<Job> jobs = new LinkedList<Job>();
             JSONObject jsonObject = (JSONObject) parser.parse(jsonData);
             JSONArray viewObjs = (JSONArray) jsonObject.get(VIEWS);
-            if (viewObjs == null && viewObjs.isEmpty()) {
-                return jobs;
+            if (viewObjs == null || viewObjs.isEmpty()) {
+                return Collections.emptyList();
             }
 
             JSONObject viewJobObj = (JSONObject) viewObjs.get(0);
             if (viewJobObj == null) {
-                return jobs;
+                return Collections.emptyList();
             }
 
             JSONArray jobObjs = (JSONArray) viewJobObj.get(JOBS);
+            final List<Job> jobs = new ArrayList<>(jobObjs.size());
+
             for (Object obj : jobObjs) {
                 JSONObject jobObj = (JSONObject) obj;
                 jobs.add(getJob(jobObj));
@@ -340,7 +343,7 @@ public class JenkinsJsonParser implements JenkinsParser {
 
     private void checkJsonDataAndThrowExceptionIfNecessary(String jsonData) {
         if (StringUtils.isEmpty(jsonData) || "{}".equals(jsonData)) {
-            String message = String.format("Empty JSON data!");
+            String message = "Empty JSON data!";
             LOG.error(message);
             throw new IllegalStateException(message);
         }

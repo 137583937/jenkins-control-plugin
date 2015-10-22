@@ -27,7 +27,7 @@ import java.util.List;
 
 public class SetJobAsFavoriteAction extends AnAction implements DumbAware {
 
-    private BrowserPanel browserPanel;
+    private final BrowserPanel browserPanel;
 
     public SetJobAsFavoriteAction(BrowserPanel browserPanel) {
         super("Set as Favorite", "Set the selected job as favorite", GuiUtil.loadIcon("star_add.png"));

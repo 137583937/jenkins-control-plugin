@@ -27,7 +27,7 @@ import java.util.List;
 
 public class UnsetJobAsFavoriteAction extends AnAction implements DumbAware {
 
-    private BrowserPanel browserPanel;
+    private final BrowserPanel browserPanel;
 
     public UnsetJobAsFavoriteAction(BrowserPanel browserPanel) {
         super("Unset as Favorite", "Unset the selected job as favorite", GuiUtil.loadIcon("star_delete.png"));

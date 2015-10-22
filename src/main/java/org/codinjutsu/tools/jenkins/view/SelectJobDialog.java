@@ -44,22 +44,22 @@ import java.util.*;
 
 public class SelectJobDialog extends JDialog {
 
-    private static String FILENAME = "jenkins.diff";
+    private static final String FILENAME = "jenkins.diff";
 
     private static final Logger LOG = Logger.getInstance(UploadPatchToJob.class.getName());
 
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JComboBox jobsList;
-    private JList changedFilesList;
+    private JComboBox<String> jobsList;
+    private JList<String> changedFilesList;
     private JScrollPane changedFilesPane;
 
-    private DefaultComboBoxModel listModel = new DefaultComboBoxModel();
+    private final DefaultComboBoxModel<String> listModel = new DefaultComboBoxModel<>();
 
-    private Project project;
+    private final Project project;
 
-    private ChangeList[] changeLists;
+    private final ChangeList[] changeLists;
 
     public SelectJobDialog(ChangeList[] changeLists, List<Job> jobs, Project project) {
 
@@ -123,7 +123,7 @@ public class SelectJobDialog extends JDialog {
 
     private void fillChangedFilesList() {
 
-        DefaultListModel model = new DefaultListModel();
+        DefaultListModel<String> model = new DefaultListModel<>();
 
         if (changeLists != null && (changeLists.length > 0)) {
             StringBuilder builder = new StringBuilder();
@@ -201,7 +201,7 @@ public class SelectJobDialog extends JDialog {
                                     watchJob(browserPanel, selectedJob);
 
                                 } else {
-                                    throw new ConfigurationException(String.format("File \"%s\" not found", virtualFile.getPath()));
+                                    throw new ConfigurationException(String.format("File \"%s\" not found", (virtualFile!=null)?virtualFile.getPath():"$undeterminedPath"));
                                 }
                             } else {
                                 throw new ConfigurationException(String.format("Job \"%s\" should has parameter with name \"%s\"", selectedJob.getName(), UploadPatchToJob.PARAMETER_NAME));
@@ -214,7 +214,7 @@ public class SelectJobDialog extends JDialog {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            String message = String.format("Build cannot be run: " + e.getMessage());
+            String message = "Build cannot be run: " + e.getMessage();
             LOG.info(message);
             browserPanel.notifyErrorJenkinsToolWindow(message);
         }

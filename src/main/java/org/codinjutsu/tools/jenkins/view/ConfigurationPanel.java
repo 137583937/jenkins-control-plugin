@@ -18,6 +18,7 @@ package org.codinjutsu.tools.jenkins.view;
 
 import com.intellij.openapi.project.Project;
 import com.intellij.ui.IdeBorderFactory;
+import com.intellij.ui.JBColor;
 import com.intellij.ui.NumberDocument;
 import org.apache.commons.lang.StringUtils;
 import org.codinjutsu.tools.jenkins.JenkinsAppSettings;
@@ -255,7 +256,7 @@ public class ConfigurationPanel {
         HTMLDocument htmlDocument = new HTMLDocument();
 
         debugTextPane.setEditable(false);
-        debugTextPane.setBackground(Color.WHITE);
+        debugTextPane.setBackground(JBColor.WHITE);
         debugTextPane.setEditorKit(htmlEditorKit);
         htmlEditorKit.install(debugTextPane);
         debugTextPane.setDocument(htmlDocument);

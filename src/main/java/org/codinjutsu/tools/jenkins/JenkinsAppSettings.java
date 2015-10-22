@@ -33,10 +33,10 @@ import org.codinjutsu.tools.jenkins.model.BuildStatusEnum;
 public class JenkinsAppSettings implements PersistentStateComponent<JenkinsAppSettings.State> {
 
     public static final String DUMMY_JENKINS_SERVER_URL = "http://dummyjenkinsserver";
-    public static final int DEFAULT_BUILD_DELAY = 0;
-    public static final int RESET_PERIOD_VALUE = 0;
+    private static final int DEFAULT_BUILD_DELAY = 0;
+    private static final int RESET_PERIOD_VALUE = 0;
 
-    private State myState = new State();
+    private final State myState = new State();
 
     public static JenkinsAppSettings getSafeInstance(Project project) {
         JenkinsAppSettings settings = ServiceManager.getService(project, JenkinsAppSettings.class);
@@ -152,7 +152,7 @@ public class JenkinsAppSettings implements PersistentStateComponent<JenkinsAppSe
         public int rssRefreshPeriod = RESET_PERIOD_VALUE;
         public String suffix = "";
 
-        public RssSettings rssSettings = new RssSettings();
+        public final RssSettings rssSettings = new RssSettings();
     }
 
     public static class RssSettings {

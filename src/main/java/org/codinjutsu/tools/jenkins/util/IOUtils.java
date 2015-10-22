@@ -20,7 +20,7 @@ public class IOUtils {
         return sw.toString();
     }
 
-    public static void copy(InputStream input, Writer output, String encoding) throws IOException {
+    private static void copy(InputStream input, Writer output, String encoding) throws IOException {
         if(encoding == null) {
             copy(input, output);
         } else {
@@ -30,17 +30,17 @@ public class IOUtils {
 
     }
 
-    public static void copy(InputStream input, Writer output) throws IOException {
+    private static void copy(InputStream input, Writer output) throws IOException {
         InputStreamReader in = new InputStreamReader(input);
         copy(in, output);
     }
 
-    public static int copy(Reader input, Writer output) throws IOException {
+    private static int copy(Reader input, Writer output) throws IOException {
         long count = copyLarge(input, output);
         return count > 2147483647L?-1:(int)count;
     }
 
-    public static long copyLarge(Reader input, Writer output) throws IOException {
+    private static long copyLarge(Reader input, Writer output) throws IOException {
         char[] buffer = new char[4096];
         long count = 0L;
 

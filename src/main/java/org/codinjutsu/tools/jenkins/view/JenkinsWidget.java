@@ -19,7 +19,6 @@ package org.codinjutsu.tools.jenkins.view;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.ServiceManager;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Disposer;
 import com.intellij.openapi.wm.*;
 import com.intellij.ui.components.panels.NonOpaquePanel;
 import org.codinjutsu.tools.jenkins.JenkinsWindowManager;

@@ -44,15 +44,15 @@ public class RequestManager implements RequestManagerInterface {
 
     private static final String BUILDHIVE_CLOUDBEES = "buildhive";
 
-    private UrlBuilder urlBuilder;
+    private final UrlBuilder urlBuilder;
 
     private SecurityClient securityClient;
 
     private JenkinsPlateform jenkinsPlateform = JenkinsPlateform.CLASSIC;
 
-    private RssParser rssParser = new RssParser();
+    private final RssParser rssParser = new RssParser();
 
-    private JenkinsParser jsonParser = new JenkinsJsonParser();
+    private final JenkinsParser jsonParser = new JenkinsJsonParser();
 
     public static RequestManager getInstance(Project project) {
         return ServiceManager.getService(project, RequestManager.class);

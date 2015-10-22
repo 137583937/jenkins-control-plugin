@@ -17,6 +17,7 @@
 package org.codinjutsu.tools.jenkins.view;
 
 import com.intellij.ui.ColoredListCellRenderer;
+import com.intellij.ui.JBColor;
 import com.intellij.ui.SimpleTextAttributes;
 import org.codinjutsu.tools.jenkins.model.FavoriteView;
 import org.codinjutsu.tools.jenkins.model.View;
@@ -37,7 +38,7 @@ public class JenkinsNestedViewComboRenderer extends ColoredListCellRenderer {
             if (view.hasNestedView()) {
                 setEnabled(false);
                 setFocusable(false);
-                setBackground(Color.LIGHT_GRAY);
+                setBackground(JBColor.LIGHT_GRAY);
                 append(view.getName(), SimpleTextAttributes.REGULAR_BOLD_ATTRIBUTES);
             } else {
                 String viewName = view.getName();

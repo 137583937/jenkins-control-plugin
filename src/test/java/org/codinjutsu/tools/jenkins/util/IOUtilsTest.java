@@ -3,19 +3,15 @@ package org.codinjutsu.tools.jenkins.util;
 import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
-import java.io.File;
 import java.io.InputStream;
 
 
 import static org.junit.Assert.*;
 
-/**
- * Created by Cezary on 2015-10-18.
- */
 public class IOUtilsTest {
 
-    public static final char SEPARATOR = '/';
-    private String POLISH_TEST_STRING = "zażółć gęślą jaźń\r\n" +
+    private static final char SEPARATOR = '/';
+    private final String POLISH_TEST_STRING = "zażółć gęślą jaźń\r\n" +
             "ZAŻÓŁĆ GĘŚLĄ JAŹŃ";
 
     @Test

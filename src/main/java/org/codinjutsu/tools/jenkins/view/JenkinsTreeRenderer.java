@@ -24,6 +24,7 @@ import org.codinjutsu.tools.jenkins.model.Build;
 import org.codinjutsu.tools.jenkins.model.Jenkins;
 import org.codinjutsu.tools.jenkins.model.Job;
 import org.codinjutsu.tools.jenkins.util.GuiUtil;
+import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -31,8 +32,8 @@ import java.util.List;
 
 public class JenkinsTreeRenderer extends ColoredTreeCellRenderer {
 
-    public static final Icon FAVORITE_ICON = GuiUtil.loadIcon("star_tn.png");
-    public static final Icon SERVER_ICON = GuiUtil.loadIcon("server_wrench.png");
+    private static final Icon FAVORITE_ICON = GuiUtil.loadIcon("star_tn.png");
+    private static final Icon SERVER_ICON = GuiUtil.loadIcon("server_wrench.png");
 
     private final List<JenkinsSettings.FavoriteJob> favoriteJobs;
 
@@ -41,7 +42,7 @@ public class JenkinsTreeRenderer extends ColoredTreeCellRenderer {
     }
 
     @Override
-    public void customizeCellRenderer(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+    public void customizeCellRenderer(@NotNull JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
 
@@ -66,7 +67,7 @@ public class JenkinsTreeRenderer extends ColoredTreeCellRenderer {
         }
     }
 
-    boolean isFavoriteJob(Job job) {
+    private boolean isFavoriteJob(Job job) {
         for (JenkinsSettings.FavoriteJob favoriteJob : favoriteJobs) {
             if (favoriteJob.name.equals(job.getName())) {
                 return true;
@@ -75,7 +76,7 @@ public class JenkinsTreeRenderer extends ColoredTreeCellRenderer {
         return false;
     }
 
-    public static SimpleTextAttributes getAttribute(Job job) {
+    private static SimpleTextAttributes getAttribute(Job job) {
         Build build = job.getLastBuild();
         if (build != null) {
             if (job.isInQueue() || build.isBuilding()) {
@@ -87,7 +88,7 @@ public class JenkinsTreeRenderer extends ColoredTreeCellRenderer {
     }
 
 
-    public static String buildLabel(Job job) {
+    private static String buildLabel(Job job) {
 
         Build build = job.getLastBuild();
         if (build == null) {
@@ -103,7 +104,7 @@ public class JenkinsTreeRenderer extends ColoredTreeCellRenderer {
     }
 
 
-    public static String buildLabel(Jenkins jenkins) {
+    private static String buildLabel(Jenkins jenkins) {
         return "Jenkins " + jenkins.getName();
     }
 

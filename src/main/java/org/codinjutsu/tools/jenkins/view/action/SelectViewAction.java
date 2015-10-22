@@ -101,7 +101,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.actionSystem.ex.CustomComponentAction;
 import com.intellij.openapi.project.DumbAwareAction;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.popup.JBPopup;
 import com.intellij.openapi.ui.popup.PopupChooserBuilder;
 import com.intellij.ui.awt.RelativePoint;
@@ -127,8 +126,8 @@ public class SelectViewAction extends DumbAwareAction implements CustomComponent
 
     private static final Icon ARROWS_ICON = GuiUtil.loadIcon("/ide/", "statusbar_arrows.png");
 
-    protected final JLabel myLabel;
-    protected final JPanel myPanel;
+    private final JLabel myLabel;
+    private final JPanel myPanel;
     private final BrowserPanel browserPanel;
 
     public SelectViewAction(final BrowserPanel browserPanel) {

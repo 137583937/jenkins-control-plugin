@@ -29,10 +29,10 @@ import java.util.Collection;
 @RunWith(Parameterized.class)
 public class RssUtilTest {
 
-    private String inputRssTitle;
-    private BuildStatusEnum expectedStatus;
-    private String expectedBuildNumber;
-    private String expectedJobName;
+    private final String inputRssTitle;
+    private final BuildStatusEnum expectedStatus;
+    private final String expectedBuildNumber;
+    private final String expectedJobName;
 
     @Parameterized.Parameters
     public static Collection testData() {

@@ -11,9 +11,6 @@ import org.codinjutsu.tools.jenkins.model.View;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by marcin on 07.10.15.
- */
 public interface RequestManagerInterface {
     Jenkins loadJenkinsWorkspace(JenkinsAppSettings configuration);
 

@@ -67,7 +67,7 @@ public class JobParameter {
     }
 
 
-    public void setChoices(String... choices) {
+    private void setChoices(String... choices) {
         Collections.addAll(values, choices);
     }
 
@@ -80,7 +80,7 @@ public class JobParameter {
         this.defaultValue = defaultValue;
     }
 
-    public void setVirtualFile(VirtualFile virtualFile) {
+    private void setVirtualFile(VirtualFile virtualFile) {
         this.virtualFile = virtualFile;
     }
 
